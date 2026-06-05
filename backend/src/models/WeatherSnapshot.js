@@ -30,7 +30,19 @@ const weatherSnapshotSchema = new mongoose.Schema({
     rawData: {
         type: Object,
         required: true
+    },
+    precipitation: {
+        type: Number,
+        required: true
+    },
+    weatherCondition: {
+        type: String,
+        required: true
     }
+    snapshotDate: {
+        type: Date,
+        default: Date.now
+    },
 }, { timestamps: true });
 
 const WeatherSnapshot = mongoose.model("WeatherSnapshot", weatherSnapshotSchema);
