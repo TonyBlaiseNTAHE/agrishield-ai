@@ -17,3 +17,4 @@ const generateAdvisory = async (weather) => {
     }
     return advisories;
 };
+export { generateAdvisory };

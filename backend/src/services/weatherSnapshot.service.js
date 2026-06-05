@@ -1,4 +1,4 @@
-import WeatherSnapshot from "../models/WeatherSnapshot";
+import WeatherSnapshot from "../models/WeatherSnapshot.js";
 
 const saveWeatherSnapshot = async (farmId, weatherData) => {
     return await WeatherSnapshot.create({

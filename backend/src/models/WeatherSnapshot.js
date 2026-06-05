@@ -38,7 +38,7 @@ const weatherSnapshotSchema = new mongoose.Schema({
     weatherCondition: {
         type: String,
         required: true
-    }
+    },
     snapshotDate: {
         type: Date,
         default: Date.now

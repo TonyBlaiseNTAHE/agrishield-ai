@@ -18,3 +18,4 @@ const farmSchema = new mongoose.Schema({
 }, { timestamps: true });   
 
 const Farm = mongoose.model("Farm", farmSchema);
+export default Farm;
