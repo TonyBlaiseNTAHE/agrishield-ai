@@ -10,9 +10,19 @@ const farmSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    latitude: Number,
-    longitude: Number,
-    area: Number,
+    location: String,
+    latitude: {
+        type: Number,
+        required: true
+    },
+    longitude: {
+        type: Number,
+        required: true
+    },
+    size: {
+        type: Number,
+        default: 0
+    },
     soilType: String,
     irrigationType: String
 }, { timestamps: true });   

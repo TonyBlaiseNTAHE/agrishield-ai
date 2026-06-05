@@ -1,9 +1,12 @@
 import express from 'express';
-import { createFarmer, getFarmers } from '../controllers/farmer.controller.js';
+import { createFarm, getFarms, getFarmById, updateFarm, deleteFarm } from '../controllers/farm.controller.js';
 
 const router = express.Router();
 
-router.post('/', createFarmer);
-router.get('/', getFarmers);
+router.post('/', createFarm);
+router.get('/', getFarms);
+router.get("/:id", getFarmById);
+router.put("/:id", updateFarm);
+router.delete("/:id", deleteFarm);
 
 export default router;

@@ -1,29 +1,34 @@
 import mongoose from "mongoose";
 
 const alertSchema = new mongoose.Schema({
-    farmId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Farm",
-        required: true
-    },
-    type: {
-        type: String,
-        enum: ['flood', 'drought', 'pest', 'disease', 'frost', 'heatwave', 'wind'],
-    },
-    message: {
-        type: String,
-        required: true
-    },
-    severity: {
-        type: String,
-        enum: ['Low', 'Medium', 'High']
-    },
-    isresolved: {
-        type: Boolean,
-        default: false
-    }
-}, { timestamps: true });
+  farmId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Farm",
+    required: true
+  },
+  type: {
+    type: String,
+    enum: ["FROST", "HEAVY_RAIN", "DROUGHT", "HIGH_WIND", "EXTREME_HEAT"],
+    required: true
+  },
+  severity: {
+    type: String,
+    enum: ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+    required: true
+  },
+  message: {
+    type: String,
+    required: true
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  resolvedAt: Date,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-const Alert = mongoose.model("Alert", alertSchema);
-
-export default Alert;
+export default mongoose.model("Alert", alertSchema);
