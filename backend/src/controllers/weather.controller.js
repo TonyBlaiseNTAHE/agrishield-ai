@@ -3,6 +3,7 @@ import getWeather from "../services/weatherAI.service.js";
 import { saveWeatherSnapshot } from "../services/weatherSnapshot.service.js";
 import { generateAdvisory } from "../services/advisory.service.js";
 import { detectAlerts } from "../services/alert.service.js";
+// import analyzePlantingWindow from "../services/planting.service.js";
 
 
 const getFarmInsight = async (req, res) => {
@@ -16,8 +17,7 @@ const getFarmInsight = async (req, res) => {
             });
         }
         const weather = await getWeather(farm.latitude, farm.longitude);
-
-        const plantingAdvice = analyzePlantingWindow(weather);
+        // const plantingAdvice = analyzePlantingWindow(weather);
 
         const snapshot = await saveWeatherSnapshot(farm._id, weather);
         const advisories = generateAdvisory(weather);
@@ -41,7 +41,6 @@ const getFarmInsight = async (req, res) => {
                 weather,
                 snapshot,
                 advisories,
-                plantingAdvice,
                 alerts
             }
         }); 

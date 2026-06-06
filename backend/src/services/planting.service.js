@@ -1,31 +1,29 @@
-
-const analyzePlantingWindow = (weather) => {
-  const temp = weather.temperature;
-  const rain = weather.rainProbability;
-  const wind = weather.windSpeed;
-
-  let score = 50;
-
-  if (temp >= 20 && temp <= 30) score += 25;
-  if (rain >= 30 && rain <= 70) score += 20;
-  if (wind < 20) score += 10;
-
-  let status = "UNSUITABLE";
-  let recommendation = "Wait before planting";
-
-  if (score >= 80) {
-    status = "OPTIMAL";
-    recommendation = "Good planting window in next 3–5 days";
-  } else if (score >= 60) {
-    status = "MODERATE";
-    recommendation = "Possible planting, monitor weather closely";
-  }
-
-  return {
-    score,
-    status,
-    recommendation
-  };
+// Simple planting logic based on weather snapshot
+export const getPlantingAdvice = (weatherSnapshot, cropType = 'maize') => {
+    const { temperature, humidity, windSpeed } = weatherSnapshot;
+    
+    // Simple rules for assessment
+    const tempIdeal = temperature >= 18 && temperature <= 32;
+    const humidityIdeal = humidity >= 60;
+    const windIdeal = windSpeed <= 20;
+    
+    if (tempIdeal && humidityIdeal && windIdeal) {
+        return {
+            canPlant: true,
+            message: "✅ Perfect conditions! Consider planting today.",
+            confidence: "high"
+        };
+    } else if (tempIdeal && humidityIdeal) {
+        return {
+            canPlant: true,
+            message: "⚠️ Good conditions, but watch the wind.",
+            confidence: "medium"
+        };
+    } else {
+        return {
+            canPlant: false,
+            message: `❌ Wait ${getWaitDays(weatherSnapshot)} days for better conditions.`,
+            confidence: "high"
+        };
+    }
 };
-
-export default analyzePlantingWindow;
